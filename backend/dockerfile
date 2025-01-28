@@ -1,0 +1,31 @@
+FROM ubuntu:20.04
+
+# Add NVIDIA's CUDA keyring and repository
+RUN apt-get update && apt-get install -y wget gnupg && \
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb && \
+    dpkg -i cuda-keyring_1.0-1_all.deb && \
+    apt-get update
+
+# Install CUDA Toolkit and cuDNN
+RUN apt-get install -y \
+    cuda-toolkit-11-2 \
+    libcudnn8-dev
+
+
+# Upgrade pip to the latest version
+RUN python3 -m pip install --upgrade pip
+
+# Copy the requirements file to the container
+COPY requirements.txt .
+
+# Install Python dependencies, explicitly ensuring CuPy binary matches CUDA version
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application source code
+COPY . .
+
+# Expose the application port
+EXPOSE 8000
+
+# Run the FastAPI app
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

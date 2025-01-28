@@ -1,0 +1,59 @@
+@import "./variables";
+@import "./mixins";
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background: #007bff;
+  padding: 10px 20px;
+  color: white;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+
+    a {
+      color: white;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background: darken(#007bff, 10%);
+    }
+  }
+}

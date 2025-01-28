@@ -1,0 +1,19 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: $background-color;
+    color: $text-color;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: $primary-color;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  button {
+    @include button($primary-color);
+  }
+  
